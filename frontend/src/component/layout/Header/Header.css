@@ -1,0 +1,71 @@
+.myheader{
+    padding-left: 40px;
+    padding-right: 40px; 
+}
+
+.fontcolor{
+    color: white;
+    text-decoration: none;
+    font-size: 16px !important;
+}
+
+.fontcolorIcon{
+    color: white;
+    font-size: 24px !important;
+}
+
+.navTitle{
+    font-family: 'Montserreat',sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    color: deeppink !important;
+    text-decoration: none !important;
+    padding-left: 60px;
+}
+
+.navBackground{
+    -webkit-transition:  background-color 300ms linear;
+    -moz-transition:background-color 300ms linear;
+    -o-transition: background-color 300ms linear;
+    transition: background-color 300ms linear;
+    background: black !important;
+}
+
+.navBackgroundScroll{
+    -webkit-transition:  background-color 300ms linear;
+    -moz-transition:background-color 300ms linear;
+    -o-transition: background-color 300ms linear;
+    transition: background-color 300ms linear;
+    background: rgb(255, 255, 255) !important;
+    box-shadow: 0 0 5px 0 rgba(12, 0, 0, 0.911) ;
+}
+
+.SecondDiv{
+    margin-right: 90px;
+    font-size: 1.8rem;
+}
+
+.navIcon{
+    color: red;
+}
+
+.speedDial{
+    position: fixed;
+    right: 3vmax;
+    top: 4vmax;
+}
+
+.speedDialIcon{
+    width: 52px;
+    height: 52px;
+    border-radius: 100%;  
+}
+
+@media screen and (max-width: 900px) {
+
+    .speedDial{
+       
+        right: 4vmax;
+        top: 9vmax;
+    }
+}
