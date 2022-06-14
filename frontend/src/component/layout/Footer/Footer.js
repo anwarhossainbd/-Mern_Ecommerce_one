@@ -6,31 +6,57 @@ import "./Footer.css"
 
 const Footer = () => {
     return (
-        <footer id="footer">
-        <div className="leftFooter">
-            <h4>DOWNLOAD OUR APP</h4>
-            <p>Download App for Android and IOS mobile phone</p>
-            <img src={playStore} alt="PlayStore" />
-            <img src={appStore} alt="AppStore" />
-        </div>
-     
-        <div className="midFooter">
-            <h1>Ecommerce</h1>
-            <p>High Quality is our first priority</p>
-            <p>Copyrights 2021 &copy; Anwar</p>
-        </div>
-     
-        <div className="rightFooter">
-          <h4>Follow Us</h4>
-     
-         <a href="https://www.facebook.com/saeed.anowar.3348/">Instragram</a>
-         <a href="https://www.facebook.com/saeed.anowar.3348/">Youtube</a>
-         <a href="https://www.facebook.com/saeed.anowar.3348/">Facebook</a>
-     
-     
-        </div>
         
-        </footer>
+
+        <footer id="footer" class="section footer">
+    <div class="container">
+        <div class="footer-container">
+
+            <div class="footer-center">
+                <h3>INFORMATION</h3>
+                <a href="#">About Us</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Site Map</a>
+            </div>
+            <div class="footer-center">
+                <h3>MY ACCOUNT</h3>
+                <a href="#">My Account</a>
+                <a href="#">Order History</a>
+                <a href="#">Wish List</a>
+                <a href="#">blogletter</a>
+                <a href="#">Returns</a>
+            </div>
+            <div class="footer-center">
+                <h3>CONTACT US</h3>
+                <div>
+                        <span>
+              <i class="fas fa-map-marker-alt"></i>
+            </span> Katiadi,Kishoreganj,Dhaka
+                </div>
+                <div>
+                        <span>
+              <i class="far fa-envelope"></i>
+            </span> mdanwarhossain1996bd@gmail.com
+                </div>
+                <div>
+                        <span>
+              <i class="fas fa-phone"></i>
+            </span> 01783473583
+                </div>
+                <div>
+                        <span>
+              <i class="far fa-paper-plane"></i>
+            </span> Dhaka, Bangladesh
+                </div>
+            </div>
+        </div>
+    </div>
+   
+</footer>
+
+
        )
 }
 

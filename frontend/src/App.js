@@ -8,6 +8,7 @@ import Home from "./component/Home/Home.js";
 import ProductDetails from "./component/Product/ProductDetails.js"
 import Products from "./component/Product/Products.js"
 import Search from "./component/Product/Search.js"
+import LoginSignUp from './component/User/LoginSignUp';
 
 function App() {
 
@@ -32,6 +33,10 @@ function App() {
         <Route path="/products/:keyword"  component={Products}/>
 
         <Route path="/search" exact={true} component={Search}/>
+
+        <Route path="/login" exact={true} component={LoginSignUp}/>
+
+
 
       </Switch>
 
