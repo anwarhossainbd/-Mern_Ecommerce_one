@@ -1,13 +1,21 @@
-import React, { Fragment,useRef ,useState} from 'react'
+import React, { Fragment,useRef ,useState, useEffect} from 'react'
 import "./LoginSignUp.css"
 import { Link } from 'react-router-dom';
 import MailOutlineIcon from "@material-ui/icons/MailOutline" ;
 import LockOpenIcon from "@material-ui/icons/LockOpen"
 import FaceIcon from "@material-ui/icons/Face"
+import {useDispatch,useSelector} from "react-redux";
+import { clearErrors,login } from '../../actions/userAction';
+import {useAlert} from "react-alert";
+import Loader from "../layout/Loader/Loader"
+
+const LoginSignUp = ({history}) => {
+
+    const dispatch =useDispatch();
+    const alert = useAlert();
 
 
-const LoginSignUp = () => {
-
+    const {error,loading,isAuthenticated} =useSelector(state=>state.user);
 
     const loginTab =useRef(null);
     const registerTab=useRef(null);
@@ -24,14 +32,14 @@ const LoginSignUp = () => {
 
     const {name,email,password}=user;
 
-    const [avatar,setAvatar] =useState("../../images/Profile.png")
-    const [avatarPreview,setAvatarPreview] =useState("../../images/Profile.png")
+    const [avatar,setAvatar] =useState()
+    const [avatarPreview,setAvatarPreview] =useState("/Profile.png")
 
-    const loginSubmit=()=>{
-        console.log(" Login Form Submited")
+    const loginSubmit=(e)=>{
+        e.preventDefault();
+
+        dispatch(login(loginEmail,loginPassword))
     }
-
-
 
     const registerSubmit=(e)=>{
         e.preventDefault();
@@ -44,16 +52,42 @@ const LoginSignUp = () => {
         myForm.set("avatar",avatar);
 
         console.log("Sign Up Form Submited")
-
     }
 
     const registerDataChange =(e)=>{
         if(e.target.name ==="avatar"){
+            const reader =new FileReader() ;
+
+            reader.onload=()=>{
+
+                if(reader.readyState ===2){
+                    setAvatarPreview(reader.result);
+                    setAvatar(reader.result) ;
+                    setUser({...user,[e.target.name]:e.target.value}) ;
+                }
+            };
+            reader.readAsDataURL(e.target.files[0]);
 
         }else{
-            setUser({...user,[e.target.name]:e.target.value})
+            setUser({...user,[e.target.name]:e.target.value}) ;
         }
     }
+
+
+    useEffect(()=>{
+
+        if(error){
+            alert.error(error);
+            dispatch(clearErrors());
+        }
+
+
+        if(isAuthenticated){
+
+            history.push("/account")
+        }
+
+    },[dispatch,error,alert,history,isAuthenticated])
 
 
     const switchTabs =(e ,tab)=>{
@@ -78,7 +112,10 @@ const LoginSignUp = () => {
     }
 
   return (
+   
     <Fragment>
+    
+         {loading?  <Loader />  :  <Fragment>
          <div className='LoginSignUpContainer'>
              <div className='LoginSignUpBox'>
                  <div>
@@ -134,7 +171,7 @@ const LoginSignUp = () => {
                           <input type="password" placeholder="Password" required name="password" value={password} onChange={registerDataChange} />        
                      </div>
 
-                     <div className='registerImage'>
+                     <div id='registerImage'>
                           <img src={avatarPreview} alt="Avatar Preview" />
                           <input type="file"   name="avatar" accept="image/*" onChange={registerDataChange} />        
                      </div>
@@ -150,6 +187,8 @@ const LoginSignUp = () => {
 
              </div>
          </div>
+    </Fragment>}
+    
     </Fragment>
   )
 }

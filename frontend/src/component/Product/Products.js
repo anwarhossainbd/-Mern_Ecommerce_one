@@ -4,13 +4,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { clearErrors,getProduct } from '../../actions/productActions';
 import Loader from '../layout/Loader/Loader';
 import ProductCard from "../Home/ProductCard" ;
-import Pagination from "react-js-pagination" ;  
+import Pagination from "react-js-pagination";
 import { Slider, Typography } from '@material-ui/core';
 import {useAlert} from "react-alert"
 import MetaData from '../layout/MetaData';
 
-// import Slider from "@material-ui/core/Slider"  ;
-// import Typography from "@material-ui/core/Typography"      
+     
 
 
 const categories=[
