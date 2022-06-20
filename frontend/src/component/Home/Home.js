@@ -8,8 +8,6 @@ import { getProduct,clearErrors } from '../../actions/productActions';
 import { useSelector,useDispatch } from 'react-redux';
 import Loader from "../layout/Loader/Loader"
 import { useAlert } from 'react-alert';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { faShoppingBag } from '@fortawesome/free-solid-svg-icons';
 
 
 const Home = () => {

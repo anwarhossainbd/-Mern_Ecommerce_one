@@ -3,11 +3,16 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faShoppingBag } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { } from "react-bootstrap";
+import { useSelector } from 'react-redux';
 
 import { NavLink } from "react-router-dom";
 import "./Header.css"
 
 const Header = () => {
+
+
+  const {isAuthenticated,user} = useSelector(state=>state.user)
+
 
   const [click, setClick] = useState(false);
   const handleClick = () => setClick(!click);
@@ -20,7 +25,7 @@ const Header = () => {
 
           <NavLink exact to="/" className="nav-logo">
           
-                         <span className="navlogoSpan">BD </span> Shop
+            <span className="navlogoSpan">BD </span> Shop
                    
           </NavLink>
 
@@ -75,9 +80,10 @@ const Header = () => {
           
            <NavLink exact={true} activeStyle={{color:"deeppink"}} className="nav-links2"  to="/search"> <FontAwesomeIcon icon={faSearch}  />    </NavLink>
 
-           <NavLink exact={true} activeStyle={{color:"deeppink"}} className="nav-links2"  to="/Cart"> <FontAwesomeIcon icon={faShoppingBag}  />       </NavLink>   
+           <NavLink exact={true} activeStyle={{color:"deeppink"}} className="nav-links2"  to="/Cart"> <FontAwesomeIcon icon={faShoppingBag}  />       </NavLink>  
+           
+           {isAuthenticated !==true ? <NavLink exact={true} activeStyle={{color:"deeppink"}} className="nav-links2"  to="/login"> <span><i class="fas fa-user"></i></span> </NavLink>  : ""  }
           
-          <NavLink exact={true} activeStyle={{color:"deeppink"}} className="nav-links2"  to="/login">   <span><i class="fas fa-user"></i></span>      </NavLink>   
 
           </div>
 

@@ -5,7 +5,7 @@ import MailOutlineIcon from "@material-ui/icons/MailOutline" ;
 import LockOpenIcon from "@material-ui/icons/LockOpen"
 import FaceIcon from "@material-ui/icons/Face"
 import {useDispatch,useSelector} from "react-redux";
-import { clearErrors,login } from '../../actions/userAction';
+import { clearErrors,login,register } from '../../actions/userAction';
 import {useAlert} from "react-alert";
 import Loader from "../layout/Loader/Loader"
 
@@ -51,7 +51,7 @@ const LoginSignUp = ({history}) => {
         myForm.set("password",password);
         myForm.set("avatar",avatar);
 
-        console.log("Sign Up Form Submited")
+        dispatch(register(myForm))
     }
 
     const registerDataChange =(e)=>{
@@ -63,7 +63,6 @@ const LoginSignUp = ({history}) => {
                 if(reader.readyState ===2){
                     setAvatarPreview(reader.result);
                     setAvatar(reader.result) ;
-                    setUser({...user,[e.target.name]:e.target.value}) ;
                 }
             };
             reader.readAsDataURL(e.target.files[0]);
