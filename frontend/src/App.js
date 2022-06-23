@@ -20,7 +20,8 @@ import UpdatePassword from "./component/User/UpdatePassword.js"
 import ForgotPassword from "./component/User/ForgotPassword.js"
 import ResetPassword from "./component/User/ResetPassword.js"
 import Cart from "./component/Cart/Cart.js"
-
+import Shipping from "./component/Cart/Shipping.js"
+import ConfirmOrder from "./component/Cart/ConfirmOrder.js"
 
 function App() {
 
@@ -66,6 +67,10 @@ function App() {
 
         <Route path="/Cart" exact={true} component={Cart}/>
 
+
+        <ProtectedRoute path="/shipping" exact={true} component={Shipping}/>
+
+        <ProtectedRoute path="/order/confirm" exact={true} component={ConfirmOrder}/>
 
 
       </Switch>

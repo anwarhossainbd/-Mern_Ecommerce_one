@@ -238,3 +238,13 @@
 }
 }
 
+
+.navClasstext{
+  font-size: 15px ;
+  font-weight:bold;
+  color:red;
+  position: absolute;
+  margin-left: 5px;
+ 
+
+}

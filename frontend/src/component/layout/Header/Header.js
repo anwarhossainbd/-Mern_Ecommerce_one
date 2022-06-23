@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faShoppingBag } from '@fortawesome/free-solid-svg-icons';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { } from "react-bootstrap";
 import { useSelector } from 'react-redux';
@@ -11,8 +12,8 @@ import "./Header.css"
 const Header = () => {
 
 
-  const {isAuthenticated,user} = useSelector(state=>state.user)
-
+  const {isAuthenticated} = useSelector(state=>state.user)
+  const {cartItems} =useSelector(state=>state.cart)
 
   const [click, setClick] = useState(false);
   const handleClick = () => setClick(!click);
@@ -80,7 +81,7 @@ const Header = () => {
           
            <NavLink exact={true} activeStyle={{color:"deeppink"}} className="nav-links2"  to="/search"> <FontAwesomeIcon icon={faSearch}  />    </NavLink>
 
-          {isAuthenticated === true ?             <NavLink exact={true} activeStyle={{color:"deeppink"}} className="nav-links2"  to="/Cart"> <FontAwesomeIcon icon={faShoppingBag}  />       </NavLink>  
+          {isAuthenticated === true ?             <NavLink exact={true} activeStyle={{color:"deeppink"}} className="nav-links2"  to="/Cart"> <FontAwesomeIcon icon={faCartShopping}  /> <span className="navClasstext">  {cartItems.length ===0 ? " " : (cartItems.length)}   </span>     </NavLink>  
   : ""  }
 
            
