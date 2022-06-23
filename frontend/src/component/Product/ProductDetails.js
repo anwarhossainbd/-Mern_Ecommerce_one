@@ -8,6 +8,7 @@ import ReviewCard from "./ReviewCard.js";
 import Loader from "../layout/Loader/Loader";
 import {useAlert} from "react-alert" ;
 import MetaData from '../layout/MetaData';
+import { addItemsToCart } from '../../actions/cartAction';
 
 const ProductDetails = ({match}) => {
 
@@ -41,10 +42,24 @@ const ProductDetails = ({match}) => {
 
     const increaseQuantity=()=>{
 
+        if(product.Stock <= quantity) return ;
+
         const qty=quantity+1 ;
         setQuantity(qty) ;
     }
 
+    const decreaseQuantity=()=>{
+
+        if(1>=quantity) return;
+
+        const qty=quantity-1 ;
+        setQuantity(qty) ;
+    }
+
+    const addToCartHandler=()=>{
+        dispatch(addItemsToCart(match.params.id,quantity))
+        alert.success("Item Added to Cart");
+    }
 
 
   return (
@@ -82,11 +97,11 @@ const ProductDetails = ({match}) => {
 
                     <div className='detailsBlock-3-1'>
                         <div className='detailsBlock-3-1-1'>
-                            <button>-</button>
-                            <input value={quantity} type="number" />
+                            <button  onClick={decreaseQuantity} >-</button>
+                            <input readOnly value={quantity} type="number" />
                             <button onClick={increaseQuantity}>+</button>
                         </div>{" "}
-                        <button>Add to Cart</button>
+                        <button onClick={addToCartHandler}>Add to Cart</button>
                     </div>
 
                     <p>

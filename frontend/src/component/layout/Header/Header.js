@@ -80,7 +80,9 @@ const Header = () => {
           
            <NavLink exact={true} activeStyle={{color:"deeppink"}} className="nav-links2"  to="/search"> <FontAwesomeIcon icon={faSearch}  />    </NavLink>
 
-           <NavLink exact={true} activeStyle={{color:"deeppink"}} className="nav-links2"  to="/Cart"> <FontAwesomeIcon icon={faShoppingBag}  />       </NavLink>  
+          {isAuthenticated === true ?             <NavLink exact={true} activeStyle={{color:"deeppink"}} className="nav-links2"  to="/Cart"> <FontAwesomeIcon icon={faShoppingBag}  />       </NavLink>  
+  : ""  }
+
            
            {isAuthenticated !==true ? <NavLink exact={true} activeStyle={{color:"deeppink"}} className="nav-links2"  to="/login"> <span><i class="fas fa-user"></i></span> </NavLink>  : ""  }
           
