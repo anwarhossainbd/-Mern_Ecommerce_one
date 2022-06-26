@@ -22,19 +22,40 @@ import ResetPassword from "./component/User/ResetPassword.js"
 import Cart from "./component/Cart/Cart.js"
 import Shipping from "./component/Cart/Shipping.js"
 import ConfirmOrder from "./component/Cart/ConfirmOrder.js"
+import {useState,useEffect} from "react";
+import axios from "axios"
+
+
+import Payment from "./component/Cart/Payment.js"
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import OrderSuccess from "./component/Cart/OrderSuccess.js";
+import MyOrders from "./component/Order/MyOrders";
+import OrderDetails from "./component/Order/OrderDetails.js";
+
+
 
 function App() {
 
   const {isAuthenticated,user} = useSelector(state=>state.user)
 
-  React.useEffect(()=>{
+  const [stripeApiKey, setStripeApiKey] = useState("")
+
+  async function getStripeApiKey(){
+    const {data} = await axios.get("/api/v1/stripeapikey")
+    setStripeApiKey(data.stripeApiKey)
+  }
+
+  useEffect(()=>{
     WebFont.load({
       google:{
         families:["Roboto","Droid Sans","Chilanka"],
       },
     });
 
-    store.dispatch(loadUser())
+    store.dispatch(loadUser());
+
+    getStripeApiKey();
 
   },[]);
 
@@ -68,12 +89,33 @@ function App() {
         <Route path="/Cart" exact={true} component={Cart}/>
 
 
+
         <ProtectedRoute path="/shipping" exact={true} component={Shipping}/>
+       
 
         <ProtectedRoute path="/order/confirm" exact={true} component={ConfirmOrder}/>
+      
+         {stripeApiKey && (
+ 
+        <Elements stripe={loadStripe(stripeApiKey)}>
+            <ProtectedRoute path="/process/payment" exact={true} component={Payment}/>
+        </Elements>
+
+        )}
+
+
+         <ProtectedRoute exact path="/order/:id" component={OrderDetails} />
 
 
       </Switch>
+
+          
+        <ProtectedRoute exact path="/success" component={OrderSuccess} />
+        <ProtectedRoute exact path="/orders" component={MyOrders} />
+             
+
+             
+
 
       <Footer />
         
@@ -83,3 +125,16 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+

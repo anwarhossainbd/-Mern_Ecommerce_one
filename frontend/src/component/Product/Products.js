@@ -30,7 +30,7 @@ const Products = ({match}) => {
     const [currentPage,setCurrentPage] = useState(1) ;
     const [price,setPrice]= useState([0,250000]);
     const [category,setCategory]= useState("");
-    const [ratings,setRatings]=useState(0)
+    const [ratings,setRatings]=useState(0) ;
 
 
     const {products ,loading ,error, productsCount,resultPerPage} = useSelector(state=>state.products)

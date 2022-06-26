@@ -2,7 +2,7 @@ import React, { Fragment ,useEffect} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons'
 import "./Home.css"
-import Product from "./ProductCard.js";
+import ProductCard from "./ProductCard.js";
 import MetaData from '../layout/MetaData';
 import { getProduct,clearErrors } from '../../actions/productActions';
 import { useSelector,useDispatch } from 'react-redux';
@@ -63,7 +63,7 @@ const Home = () => {
    <div className='container' id="container">
 
    {
-     products && products.map((product)=> <Product product={product} />)
+     products && products.map((product)=> <ProductCard product={product} />)
    }
    
    </div>
