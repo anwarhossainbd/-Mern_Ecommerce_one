@@ -24,14 +24,14 @@ import Shipping from "./component/Cart/Shipping.js"
 import ConfirmOrder from "./component/Cart/ConfirmOrder.js"
 import {useState,useEffect} from "react";
 import axios from "axios"
-
-
 import Payment from "./component/Cart/Payment.js"
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import OrderSuccess from "./component/Cart/OrderSuccess.js";
 import MyOrders from "./component/Order/MyOrders";
 import OrderDetails from "./component/Order/OrderDetails.js";
+import Dashboard from "./component/Admin/Dashboard.js";
+import ProductList from "./component/Admin/ProductList.js"
 
 
 
@@ -85,14 +85,11 @@ function App() {
 
 
         <Route path="/login" exact={true} component={LoginSignUp}/>
-
         <Route path="/Cart" exact={true} component={Cart}/>
 
 
 
         <ProtectedRoute path="/shipping" exact={true} component={Shipping}/>
-       
-
         <ProtectedRoute path="/order/confirm" exact={true} component={ConfirmOrder}/>
       
          {stripeApiKey && (
@@ -104,7 +101,8 @@ function App() {
         )}
 
 
-         <ProtectedRoute exact path="/order/:id" component={OrderDetails} />
+        <ProtectedRoute exact path="/order/:id" component={OrderDetails} />
+
 
 
       </Switch>
@@ -114,7 +112,9 @@ function App() {
         <ProtectedRoute exact path="/orders" component={MyOrders} />
              
 
-             
+        <ProtectedRoute isAdmin={true} exact path="/admin/dashboard" component={Dashboard} />
+        <ProtectedRoute isAdmin={true} exact path="/admin/products" component={ProductList} />
+
 
 
       <Footer />
