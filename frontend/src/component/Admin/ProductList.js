@@ -2,21 +2,53 @@ import React, { Fragment,useEffect } from 'react'
 import { DataGrid } from '@material-ui/data-grid'
 import "./productList.css" ;
 import { useSelector,useDispatch } from 'react-redux';
-import { clearErrors ,getAdminProduct} from '../../actions/productActions';
+import { clearErrors ,deleteProduct,getAdminProduct} from '../../actions/productActions';
 import {Link} from "react-router-dom";
 import { useAlert } from 'react-alert';
-import {Button} from "@material-ui/core";
+import Button from 'react-bootstrap/Button';
 import MetaData from '../layout/MetaData';
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SideBar from "../Admin/Sidebar"
+import { DELETE_PRODUCT_RESET } from '../../constants/productConstants';
 
-const ProductList = () => {
+const ProductList = ({history}) => {
 
     const dispatch = useDispatch();
     const alert =useAlert() ;
 
     const {error,products} =useSelector(state=>state.products)
+    const {error:deleteError,isDeleted} =useSelector(state=>state.product)
+
+
+    const deleteProductHandler =(id)=>{
+      dispatch(deleteProduct(id))
+    }
+   
+
+    useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
+
+    if (deleteError) {
+      alert.error(deleteError);
+      dispatch(clearErrors());
+    }
+
+     if (isDeleted) {
+      alert.success("Product delete Successfully");
+      history.push("/admin/dashboard")
+      dispatch({type:DELETE_PRODUCT_RESET});
+    }
+
+
+    
+
+    dispatch(getAdminProduct());
+  }, [dispatch, alert, error,isDeleted,deleteError,history]);
+
 
     const columns = [
     {field:"id",headerName:"Product ID" ,minWidth:200, flex:0.5},
@@ -26,6 +58,8 @@ const ProductList = () => {
       minWidth:350,
       flex:1,
     },
+
+    
 
      { 
       field:"stock",
@@ -55,13 +89,12 @@ const ProductList = () => {
       renderCell:(params)=>{
         return(
           <Fragment>
-             <Link to={`/admin/product/${params.getValue(params.id,"id")}`}> 
-                <EditIcon />
-             </Link>
+          
+              <Button variant="success" >   <Link to={`/admin/product/${params.getValue(params.id,"id")}`}> 
+                <EditIcon style={{color:"white"}} />
+             </Link>  </Button> &nbsp;
 
-             <Button>
-                <DeleteIcon />
-             </Button>
+              <Button variant="danger" onClick={()=>deleteProductHandler(params.getValue(params.id,"id"))}>  <DeleteIcon  style={{color:"white"}}  />  </Button>{' '}
           
           </Fragment>
         )
@@ -80,18 +113,13 @@ const ProductList = () => {
       stock:item.Stock,
       price:item.price,
       name:item.name,
+
     })
   } )
 
-  useEffect(() => {
-    if (error) {
-      alert.error(error);
-      dispatch(clearErrors());
-    }
-
-    dispatch(getAdminProduct());
-  }, [dispatch, alert, error]);
-
+  //  {product.images && product.images.map((item,i)=>(
+  //                   <img className="CarouselImage" key={item.url} src={item.url} alt={`${i} Slide`}  />
+  //               ))}
 
 
   return (

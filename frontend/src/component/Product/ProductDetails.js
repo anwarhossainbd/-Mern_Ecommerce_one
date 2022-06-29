@@ -119,11 +119,21 @@ const ProductDetails = ({match}) => {
 
         <div className="ProductDetails">
         
-        <Carousel >
-                {product.images && product.images.map((item,i)=>(
+       
+        
+
+
+           <Carousel >
+
+               {product.images && product.images.map((item,i)=>(
                     <img className="CarouselImage" key={item.url} src={item.url} alt={`${i} Slide`}  />
                 ))}
-        </Carousel>
+
+            </Carousel>
+          
+         
+              
+      
                     
         <div>
                 <div className="detailsBlock-1">

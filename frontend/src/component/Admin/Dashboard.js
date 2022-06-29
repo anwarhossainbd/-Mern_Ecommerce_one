@@ -1,13 +1,11 @@
 import React, { useEffect } from "react";
-import Sidebar from "./Sidebar.js";
 import "./dashboard.css";
 import { Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { Doughnut, Line } from "react-chartjs-2";
 import { useSelector,useDispatch } from 'react-redux';
 import { getAdminProduct} from '../../actions/productActions';
-
-
+import SideBar from './Sidebar'
 
 const Dashboard = () => {
 
@@ -57,7 +55,7 @@ const lineState = {
   return (
     <div className="dashboard">
     
-        <Sidebar />
+      <SideBar />
 
         <div className="dashboardContainer">
         

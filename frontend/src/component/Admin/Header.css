@@ -1,0 +1,107 @@
+
+
+
+/* Basic Reset */
+:root {
+  --white: #fff;
+  --primary: #000033;
+  --pink: #ff0066;
+}
+
+.navigation {
+  background-color: rgba(255, 251, 251);
+  display: flex;
+  flex-direction: column;
+  padding: 4rem 0;
+  height: 100%;
+  background: var(--primary);
+  z-index: 100;
+  padding: 1.5rem 0.5rem 2rem;
+  transition: 500ms;
+}
+
+.navigation.active {
+  width: 220px;
+}
+
+
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  overflow: hidden;
+}
+
+.nav .logo {
+  display: flex;
+  margin-top: 5rem;
+  align-items: center;
+  margin-bottom: 2rem;
+ 
+  padding: 0.7rem 0.5rem 0.5rem 0.5rem;
+  color: var(--white);
+}
+
+.nav .logo .logo-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1.5rem;
+  font-size: 2rem;
+  font-weight:700 !important ;
+}
+
+.nav .logo .logo-text {
+  font-size: 2.8rem;
+  text-align:  center ;
+  margin:auto ;
+  background: whitesmoke;
+  width: 100% ;
+  font-family: 'Montserreat',sans-serif;
+  font-weight: 700;
+
+}
+
+
+
+.nav .nav-link {
+  display: flex;
+  align-items: center;
+  padding: 0.7rem 0.5rem 0.5rem 0.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 0.5rem;
+  color: var(--white);
+  transition: 500ms ease-in-out;
+}
+
+.nav .nav-link.active {
+  background-color: var(--pink);
+}
+
+.nav .nav-link:hover {
+  background-color: var(--pink);
+}
+
+.nav .nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin-right: 1.5rem;
+}
+
+.nav .nav-text {
+  font-weight: 800;
+   font-family: 'Raleway',sans-serif;
+}
+
+.nav-text{
+  font-weight: 800;
+   font-family: 'Raleway',sans-serif;
+}
+
+.iconText{
+  font-size: 2rem;
+}

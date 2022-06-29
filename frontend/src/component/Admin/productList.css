@@ -21,6 +21,8 @@
 .productListTable {
   background-color: white;
   border: none !important;
+  margin-left: 5rem;
+  margin-right: 5rem;
 }
 
 .productListTable div {

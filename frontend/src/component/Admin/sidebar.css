@@ -32,6 +32,10 @@
   transform: scale(1.1);
 }
 
+.tClass label{
+  font: 400 3rem "Roboto";
+}
+
 .sidebar a > P {
   display: flex;
   align-items: center;

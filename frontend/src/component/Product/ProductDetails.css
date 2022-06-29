@@ -4,10 +4,15 @@
     background-color: rgb(255,255,255);
     width: 100vw;
     max-width: 100%;
+    height:90vh;
     padding: 6vmax;
     box-sizing: border-box;
     display: flex;
 }
+
+
+
+
 
 .ProductDetails >div{
 
@@ -30,6 +35,7 @@
 
 .CarouselImage{
     width: 70%;
+    height:100%;
     margin: 0 15%;
 }
 
