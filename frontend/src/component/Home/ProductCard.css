@@ -11,5 +11,39 @@
 
 
 
+@media screen and (max-width: 1600px) {
 
+    .imageStyle{
+    height:250px;
+    }
+}
+
+
+
+@media screen and (max-width: 1400px) {
+
+    .imageStyle{
+    height:200px;
+    }
+}
+
+
+@media screen and (max-width: 900px) {
+
+    .imageStyle{
+    height:100px;
+    padding:5px;}
+}
+
+
+.myClass{
+    text-align: center;
+    margin: auto;
+}
+
+.productCardC{
+    text-align: center;
+}
+
+    
 

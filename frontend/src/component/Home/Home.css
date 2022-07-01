@@ -1,8 +1,10 @@
 .banner{
-    background-image: url("./Images/me.jpg");
+    background-image: url("./Images/hero.jpg");
     background-repeat: no-repeat;
+    background-position: center;
     background-size: cover;
-   
+    position: relative;
+    object-fit: cover;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -17,15 +19,17 @@
 
 
  .banner >h1{
-    margin: 2vmax;
-    font:600 2.5vmax "Roboto"
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    transform: translate(-15%,-20%);
 }
 
 .banner > p{
     font: 300 1.4vmax "Lucida Sans";
 }
 
-.banner > a >button{
+.banner > a {
     margin-bottom: 5vmax;
     cursor: pointer;
     background-color: white;
@@ -76,6 +80,7 @@
     margin: 2vmax;
     transition:all 0.5s;
     padding-bottom: 0.5vmax;
+     background: #f1f1f1;
     
 }
 
@@ -169,6 +174,32 @@
 
 
 
+.banner-style{
+    position:absolute;
+    top: 40%;
+    left:5%;
+    transform: translate(15%,-50%);
+
+}
+
+.banner-style .btn{
+   
+    margin:2rem auto;
+    background-color:red;
+    padding:10px 20px ;
+    color:white;
+    font-size: 16px;
+
+}
+
+@media screen and (max-width:500){
+
+    .banner-style h1{
+        display: none;
+    }
+ 
+
+}
 
 
 

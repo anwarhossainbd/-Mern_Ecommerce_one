@@ -50,7 +50,7 @@ exports.getAllProducts= catchAsyncErrors(  async(req,res,next)=>{
     const resultPerPage =4 ;
     const productsCount = await Product.countDocuments();
 
-    const apiFeature = new ApiFeatures(Product.find(),req.query)
+    const apiFeature = new ApiFeatures(Product.find().sort({createdAt:-1}),req.query)
               .search()
               .filter()
               .pagination(resultPerPage)
@@ -122,6 +122,41 @@ exports.updateProduct = catchAsyncErrors(  async(req,res,next)=>{
     if(!product){
         return next( new ErrorHander("Product not found",404))
     }
+
+
+    // Images Start Here
+  let images = [];
+
+  if (typeof req.body.images === "string") {
+    images.push(req.body.images);
+  } else {
+    images = req.body.images;
+  }
+
+  if (images !== undefined) {
+    // Deleting Images From Cloudinary
+    for (let i = 0; i < product.images.length; i++) {
+      await cloudinary.v2.uploader.destroy(product.images[i].public_id);
+    }
+
+    const imagesLinks = [];
+
+    for (let i = 0; i < images.length; i++) {
+      const result = await cloudinary.v2.uploader.upload(images[i], {
+        folder: "products",
+      });
+
+      imagesLinks.push({
+        public_id: result.public_id,
+        url: result.secure_url,
+      });
+    }
+
+    req.body.images = imagesLinks;
+  }
+
+
+
 
     product =await Product.findByIdAndUpdate(req.params.id,req.body,{
         new:true,

@@ -48,12 +48,16 @@ const Home = () => {
 
    
     <div className="banner">
+      <div className="banner-style">
         <p>Welcome to BD Express</p>
-            <h1>FIND AMAZING PRODUCTS BELOW</h1>
+            <h1>FIND AMAZING PRODUCTS </h1>
 
-            <a href='#container'>
-              <button>Scroll  <FontAwesomeIcon icon={faArrowDown} />  </button>
-            </a>
+           
+
+            <a href="#container" class="btn btn1">Show Products</a>
+      
+      </div>
+
     </div>
       
 
@@ -67,6 +71,9 @@ const Home = () => {
    }
    
    </div>
+
+
+
 
    </Fragment>
      )
