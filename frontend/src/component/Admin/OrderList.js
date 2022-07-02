@@ -5,12 +5,14 @@ import { DataGrid } from "@material-ui/data-grid";
 import "./productList.css";
 import { useAlert } from "react-alert";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllOrders } from '../../actions/orderAction';
+import { clearErrors, deleteOrder, getAllOrders } from '../../actions/orderAction';
+import Button from 'react-bootstrap/Button';
+import { Link } from "react-router-dom";
+import DeleteIcon from "@material-ui/icons/Delete";
+import EditIcon from "@material-ui/icons/Edit";
+import { DELETE_ORDER_RESET } from '../../constants/orderConstants';
 
-
-
-const OrderList = () => {
-
+const OrderList = ({history}) => {
 
   const dispatch = useDispatch();
   const alert = useAlert();
@@ -18,17 +20,32 @@ const OrderList = () => {
   const { error, orders } = useSelector((state) => state.allOrders);
   const { error: deleteError, isDeleted } = useSelector((state) => state.order);
 
+   const deleteOrderHandler =(id)=>{
+    dispatch(deleteOrder(id))
+  }
 
   useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
 
+    if (deleteError) {
+      alert.error(deleteError);
+      dispatch(clearErrors());
+    }
+
+    if (isDeleted) {
+      alert.success("Order Deleted Successfully");
+      history.push("/admin/orders");
+      dispatch({type:DELETE_ORDER_RESET});
+    }
 
     dispatch(getAllOrders())
-  },[dispatch]);
+  },[dispatch,alert,error,deleteError,isDeleted,history]);
 
 const columns = [
-
     { field: "id", headerName: "Order ID", minWidth: 300, flex: 1 },
-
     {
       field: "status",
       headerName: "Status",
@@ -57,15 +74,35 @@ const columns = [
       flex: 0.5,
     },
 
+    {
+      field: "actions",
+      flex: 0.3,
+      headerName: "Actions",
+      minWidth: 150,
+      type: "number",
+      sortable: false,
+      renderCell: (params) => {
+        return (
+          <Fragment>
+              <Button variant="success" >   <Link to={`/admin/order/${params.getValue(params.id, "id")}`}> 
+                <EditIcon style={{color:"white"}} />
+              </Link>  </Button> &nbsp;
+
+              <Button variant="danger" onClick={()=>deleteOrderHandler(params.getValue(params.id,"id"))}>  <DeleteIcon  style={{color:"white"}}  />  </Button>{' '}  
+          </Fragment>
+        );
+      },
+    },
+
 ];
 const rows = [];
 
 orders && orders.forEach((item)=>{
   rows.push({
     id:item._id,
-     itemsQty: item.orderItems.length,
-        amount: item.totalPrice,
-        status: item.orderStatus,
+    itemsQty:item.orderItems.length,
+    amount:item.totalPrice,
+    status:item.orderStatus,
   })
 })
 
@@ -75,7 +112,6 @@ orders && orders.forEach((item)=>{
 
       <div className="dashboard">
           <SideBar />
-
         <div className="productListContainer">
           <h1 id="productListHeading">ALL ORDERS</h1>
 
@@ -86,15 +122,11 @@ orders && orders.forEach((item)=>{
               disableSelectionOnClick
               className="productListTable"
               autoHeight
-          />
-       
-
+          />      
         </div>
-
       </div>
 
      </Fragment>
   )
 }
-
 export default OrderList
