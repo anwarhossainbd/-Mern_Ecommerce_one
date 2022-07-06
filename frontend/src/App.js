@@ -39,6 +39,7 @@ import ProcessOrder from "./component/Admin/ProcessOrder.js";
 import UsersList from "./component/Admin/UsersList.js";
 import UpdateUser from "./component/Admin/UpdateUser.js";
 import ProductReviews from "./component/Admin/ProductReviews.js";
+import About from "./component/layout/About/About.js";
 
 
 
@@ -82,6 +83,8 @@ function App() {
         <Route path="/products" exact={true} component={Products}/>
         <Route path="/products/:keyword"  component={Products}/>
         <Route path="/search" exact={true} component={Search}/>
+
+        <Route exact path="/about" component={About} />
 
 
         <ProtectedRoute path="/account" exact={true} component={Profile} />
