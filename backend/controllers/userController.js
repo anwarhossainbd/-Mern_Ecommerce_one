@@ -55,7 +55,7 @@ exports.loginUser =catchAsyncErrors(async(req,res,next)=>{
     const user = await User.findOne({email:email}).select("+password");
 
     if(!user){
-        return next (new ErrorHander("Please enter email and password",401));
+        return next (new ErrorHander("Invalid email or password",401));
     }
 
     const isPasswordMatched = await user.comparePassword(password) ;
@@ -336,6 +336,10 @@ exports.deleteUser= catchAsyncErrors(async(req,res,next)=>{
             new ErrorHander(`User does not exist with id: ${req.params.id}`,400)
         );
     }
+
+    const imageId = user.avatar.public_id;
+
+    await cloudinary.v2.uploader.destroy(imageId);
 
     await user.remove();
 
