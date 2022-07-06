@@ -6,7 +6,7 @@ import {
   clearErrors,
   getAllReviews,
   deleteReviews,
-} from "../../actions/productActions.js";
+} from "../../actions/productActions";
 import { useAlert } from "react-alert";
 import { Button } from "@material-ui/core";
 import MetaData from "../layout/MetaData";
@@ -141,10 +141,10 @@ const ProductReviews = ({ history }) => {
             <h1 className="productReviewsFormHeading">ALL REVIEWS</h1>
 
             <div>
-              <Star />
+             
               <input
                 type="text"
-                placeholder="Product Id"
+                placeholder=" Enter Product Id"
                 required
                 value={productId}
                 onChange={(e) => setProductId(e.target.value)}

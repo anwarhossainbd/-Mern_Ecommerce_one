@@ -4,10 +4,11 @@
   background-color: rgb(255, 255, 255);
   border-left: 1px solid rgba(0, 0, 0, 0.158);
   height: 100vh;
+  padding-top: 2rem;
 }
 
 .productReviewsForm {
-  width: 20rem;
+  width: 50rem;
   display: flex;
   flex-direction: column;
   align-items: center;
