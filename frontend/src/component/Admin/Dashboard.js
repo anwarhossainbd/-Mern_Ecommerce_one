@@ -7,6 +7,8 @@ import { useSelector,useDispatch } from 'react-redux';
 import { getAdminProduct} from '../../actions/productActions';
 import SideBar from './Sidebar'
 import { getAllOrders } from "../../actions/orderAction";
+import { getAllUsers } from "../../actions/userAction.js";
+import MetaData from "../layout/MetaData";
 
 const Dashboard = () => {
 
@@ -27,7 +29,15 @@ const Dashboard = () => {
   useEffect(() => {
     dispatch(getAdminProduct());
     dispatch(getAllOrders())
+    dispatch(getAllUsers());
   }, [dispatch]);
+
+  let totalAmount =0 ;
+
+   orders &&
+    orders.forEach((item) => {
+      totalAmount += item.totalPrice;
+    });
 
 
 const lineState = {
@@ -37,7 +47,7 @@ const lineState = {
         label: "TOTAL AMOUNT",
         backgroundColor: ["tomato"],
         hoverBackgroundColor: ["rgb(197, 72, 49)"],
-        data: [0, 4000],
+        data: [0, totalAmount],
       },
     ],
   };
@@ -58,6 +68,9 @@ const lineState = {
   return (
     <div className="dashboard">
     
+      <MetaData title="Dashboard - Admin Panel" />
+
+
       <SideBar />
 
         <div className="dashboardContainer">
@@ -66,7 +79,7 @@ const lineState = {
 
            <div className="dashboardSummary">
               <div>
-                  <p> Total Amount <br /> $2000 </p>
+                  <p> Total Amount <br /> ${totalAmount} </p>
               </div>
 
               <div className="dashboardSummaryBox2">

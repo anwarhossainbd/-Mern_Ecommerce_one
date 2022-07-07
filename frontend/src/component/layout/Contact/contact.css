@@ -1,0 +1,155 @@
+
+:root {
+    --primaryColor: #dc3545;
+    --white: #fff;
+    --black: rgba(0, 0, 0, 0.7);
+    --black2: #333;
+    --yellow: #e6af4b;
+    --blue: #e7f3ff;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;800&display=swap");
+
+
+.contact{
+    background-color: var(--blue);
+    padding: 2rem 0rem;
+}
+
+.contact-center{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+}
+.contact .left h2{
+    font-weight: 700;
+    font-size: 3.5rem;
+    color: var(--primaryColor);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.contact .left p{
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+.contact .left .bottom{
+    margin-top: 3rem;
+    display: flex;
+    align-items: center;
+}
+
+.contact-center .left .bottom  div {
+    margin-right: auto;
+}
+
+
+.contact-center .left .bottom span {
+    font-size: 3rem;
+    color: var(--primaryColor);
+}
+
+.contact-center .left .bottom h4 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.contact-center .left .bottom small {
+    font-size: 1.5rem;
+}
+
+.contact-center .right .form{
+    border: 1px solid var(--yellow);
+    padding: 3rem;
+}
+
+.contact-center .right .form div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+}
+
+.contact-center .right .form input {
+    border: 1px solid var(--yellow);
+    border-radius: 0.5rem;
+    text-indent: 1rem;
+    padding: 1rem 2rem 1rem 0;
+}
+
+.contact-center .right .form input:not(:last-child){
+    margin-right: 1rem;
+}
+
+.contact-center .right .form textarea {
+    display: block;
+    width: 100%;
+    border: 1px solid var(--yellow);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    overflow: auto;
+    resize: vertical;
+}
+
+
+.contact-center .right .form a {
+    display: inline-block;
+    padding: 1.3rem 3rem;
+    background-color: var(--primaryColor);
+    color: var(--white);
+}
+
+
+@media only screen and (max-width: 996px) {
+    .contact-center{
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media only screen and (max-width: 768px) {
+    .contact-center .right .form div {
+        flex-direction: column;
+        margin-bottom: 2rem;
+    }
+
+    .contact-center .right .form input {
+        width: 100%;
+        padding: 1rem 0;
+    }
+
+    .contact-center .right .form div > input {
+        margin-bottom: 2rem;
+    }
+
+    .contact .left .bottom .first{
+        margin-top: 3rem;
+
+        flex: 1 1 50%;
+        align-items: center;
+    }
+
+    .contact .left .bottom .second{
+        margin-top: 3rem;
+        flex: 1 1 50%;
+
+        align-items: center;
+    }
+
+}
+
+@media only screen and (max-width: 468px) {
+    .contact .left .bottom {
+        flex-direction: column;
+        margin:0 auto;
+        padding-left: 2rem;
+    }
+
+    .contact .left .bottom div{
+
+        margin:0 auto;
+        text-align: center;
+
+    }
+}

@@ -71,7 +71,7 @@ exports.getAllProducts= catchAsyncErrors(  async(req,res,next)=>{
 
 exports.getAdminProducts= catchAsyncErrors(  async(req,res,next)=>{
               
-    const products =await Product.find() ;
+    const products =await Product.find().sort({createdAt:-1}) ;
 
     res.status(200).json({
         success:true,

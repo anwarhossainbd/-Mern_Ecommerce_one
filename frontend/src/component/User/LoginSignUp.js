@@ -124,7 +124,14 @@ const LoginSignUp = ({history,location}) => {
 
                  </div>
 
+                
                  <form className="loginForm" ref={loginTab} onSubmit={loginSubmit}>
+
+
+                  <h3 className="myAdmin">Admin Email:mdanwarhossain1996bd@gmail.com</h3>
+                 <h3 className="myAdmin">Admin Password:12345678</h3>
+
+
                  
                     <div className="loginEmail">
                       

@@ -15,7 +15,6 @@
 
 
 .ProductDetails >div{
-
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -28,15 +27,20 @@
 
 
 .ProductDetails >div:last-child{
-
     align-items: flex-start;
 }
 
 
-.CarouselImage{
+/* .CarouselImage{
     width: 70%;
     height:100%;
     margin: 0 15%;
+} */
+
+.CarouselImage {
+  width: 80%;
+  margin:0 auto;
+ 
 }
 
 .detailsBlock-1 >h2{
